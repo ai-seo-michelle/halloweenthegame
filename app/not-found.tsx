@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ArrowRight, Home } from 'lucide-react';
 import { SiteFooter } from '@/components/site/SiteFooter';
 import { SiteHeader } from '@/components/site/SiteHeader';
@@ -20,24 +19,24 @@ export default function NotFound() {
           verified in-game information before it can be published.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Link
+          <a
             href="/"
             className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-orange-400 px-5 py-3 text-base font-bold text-[#160f09] transition hover:bg-orange-300"
           >
             <Home aria-hidden="true" className="h-5 w-5" />
             Back home
-          </Link>
-          <Link
+          </a>
+          <a
             href="/halloween-the-game-how-to-escape"
             className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-white/15 bg-white/7 px-5 py-3 text-base font-bold text-stone-100 transition hover:bg-white/12"
           >
             Open escape guide
             <ArrowRight aria-hidden="true" className="h-5 w-5" />
-          </Link>
+          </a>
         </div>
         <section className="mt-12 grid gap-3 sm:grid-cols-2">
           {popularGuides.map((guide) => (
-            <Link
+            <a
               key={guide.slug}
               href={guidePath(guide.slug)}
               className="rounded-[8px] border border-white/10 bg-white/[0.045] p-4 transition hover:border-orange-300/45 hover:bg-orange-500/10"
@@ -45,7 +44,7 @@ export default function NotFound() {
               <span className="text-sm font-semibold text-stone-100">
                 {guide.h1}
               </span>
-            </Link>
+            </a>
           ))}
         </section>
       </main>

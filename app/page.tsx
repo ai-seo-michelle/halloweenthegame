@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import {
   ArrowRight,
   BookOpen,
@@ -68,7 +67,7 @@ function GuideCard({
   const Icon = iconMap[guide.slug as keyof typeof iconMap] ?? BookOpen;
 
   return (
-    <Link
+    <a
       href={guidePath(guide.slug)}
       className="group flex h-full flex-col rounded-[8px] border border-white/10 bg-white/[0.045] p-5 transition hover:-translate-y-0.5 hover:border-orange-300/45 hover:bg-white/[0.07]"
     >
@@ -92,7 +91,7 @@ function GuideCard({
           {guide.quickAnswer}
         </p>
       ) : null}
-    </Link>
+    </a>
   );
 }
 
@@ -124,20 +123,20 @@ export default function Home() {
                 Night He Came Home story mode.
               </p>
               <div className="mt-8 flex max-w-full flex-col gap-3 sm:flex-row">
-                <Link
+                <a
                   href="/halloween-the-game-survivors"
                   className="inline-flex items-center justify-center gap-2 rounded-[8px] bg-orange-400 px-5 py-3 text-base font-bold text-[#160f09] transition hover:bg-orange-300"
                 >
                   <Shield aria-hidden="true" className="h-5 w-5" />
                   Survive as a Hero
-                </Link>
-                <Link
+                </a>
+                <a
                   href="/halloween-the-game-michael-myers"
                   className="inline-flex items-center justify-center gap-2 rounded-[8px] border border-white/15 bg-white/7 px-5 py-3 text-base font-bold text-stone-100 transition hover:bg-white/12"
                 >
                   <Target aria-hidden="true" className="h-5 w-5" />
                   Play as Michael Myers
-                </Link>
+                </a>
               </div>
             </div>
             <div className="hidden rounded-[8px] border border-white/10 bg-[#120f0c]/82 p-4 shadow-2xl shadow-black/35 lg:block">
@@ -146,7 +145,7 @@ export default function Home() {
               </div>
               <div className="grid gap-3 pt-4">
                 {popularGuides.map((guide, index) => (
-                  <Link
+                  <a
                     key={guide.slug}
                     href={guidePath(guide.slug)}
                     className="group grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-[8px] border border-white/10 bg-black/18 p-3 transition hover:border-orange-300/45 hover:bg-orange-500/10"
@@ -161,7 +160,7 @@ export default function Home() {
                       aria-hidden="true"
                       className="h-4 w-4 text-stone-500 transition group-hover:translate-x-1 group-hover:text-orange-200"
                     />
-                  </Link>
+                  </a>
                 ))}
               </div>
               <p className="mt-4 rounded-[8px] border border-emerald-300/20 bg-emerald-400/8 px-3 py-3 text-sm leading-6 text-stone-300">
@@ -203,12 +202,12 @@ export default function Home() {
               <h2 className="text-3xl font-semibold text-stone-50">
                 Popular Guides
               </h2>
-              <Link
+              <a
                 href="/halloween-the-game-characters"
                 className="hidden text-sm font-semibold text-orange-200 hover:text-orange-100 sm:inline"
               >
                 View character guide
-              </Link>
+              </a>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {popularGuides.map((guide) => (

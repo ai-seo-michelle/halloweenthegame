@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import {
   AlertTriangle,
   ArrowLeft,
@@ -92,23 +91,23 @@ export function GuideArticle({ guide }: { guide: GuidePage }) {
         <section className="border-b border-white/10 bg-[#0d0b09]">
           <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
             <nav aria-label="Breadcrumb" className="mb-8 text-sm text-stone-500">
-              <Link href="/" className="hover:text-orange-200">
+              <a href="/" className="hover:text-orange-200">
                 Home
-              </Link>
+              </a>
               <span className="mx-2">/</span>
-              <Link href="/#popular-guides" className="hover:text-orange-200">
+              <a href="/#popular-guides" className="hover:text-orange-200">
                 Guides
-              </Link>
+              </a>
               <span className="mx-2">/</span>
               <span className="text-stone-300">{guide.h1}</span>
             </nav>
-            <Link
+            <a
               href="/"
               className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-orange-200 transition hover:text-orange-100"
             >
               <ArrowLeft aria-hidden="true" className="h-4 w-4" />
               Back to guide index
-            </Link>
+            </a>
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
               <div>
                 <p className="mb-4 inline-flex rounded-[8px] border border-orange-300/30 bg-orange-500/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange-200">
@@ -314,7 +313,7 @@ export function GuideArticle({ guide }: { guide: GuidePage }) {
               </h2>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {relatedGuides.map((related) => (
-                  <Link
+                  <a
                     key={related.slug}
                     href={guidePath(related.slug)}
                     className="group rounded-[8px] border border-white/10 bg-white/[0.04] p-4 transition hover:border-orange-300/45 hover:bg-orange-500/10"
@@ -329,7 +328,7 @@ export function GuideArticle({ guide }: { guide: GuidePage }) {
                         className="h-4 w-4 transition group-hover:translate-x-1"
                       />
                     </span>
-                  </Link>
+                  </a>
                 ))}
               </div>
             </section>

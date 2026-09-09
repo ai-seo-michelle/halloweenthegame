@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { guidePages, guidePath } from '@/lib/guides';
 import { siteConfig } from '@/lib/site-config';
 
@@ -31,12 +30,12 @@ export function SiteFooter() {
           <ul className="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-1">
             {guidePages.slice(0, 8).map((guide) => (
               <li key={guide.slug}>
-                <Link
+                <a
                   className="text-sm text-stone-400 transition hover:text-orange-200"
                   href={guidePath(guide.slug)}
                 >
                   {guide.h1}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

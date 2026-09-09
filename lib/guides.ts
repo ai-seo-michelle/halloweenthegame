@@ -1082,7 +1082,668 @@ export const guidePages: GuidePage[] = [
   },
 ];
 
-export const guideMap = new Map(guidePages.map((guide) => [guide.slug, guide]));
+const guideContentUpdates: Record<string, Partial<GuidePage>> = {
+  'halloween-the-game-characters': {
+    quickAnswer: `Halloween: The Game launches with four movie legacy Heroes, six new civilian Heroes, and Michael Myers as the Boogeyman side. Bob, Lynda, Annie, and Laurie are confirmed legacy playable characters, while Jennifer, Tanya, Rachel, Eric, Marcus, and Thomas round out the civilian roster. In matches, character choice matters less than role discipline: Heroes must locate residents, arm them, assign them to tasks, and open escape routes while Michael uses stalking, mobility, and pressure to break the rescue chain.`,
+    keyPoints: [
+      `Confirmed legacy Heroes: Bob, Lynda, Annie, and Laurie.`,
+      `Confirmed new Heroes: Jennifer, Tanya, Rachel, Eric, Marcus, and Thomas.`,
+      `Michael Myers is the playable 1v4 threat, with Killer Sense, Stalk, Shape Jump, Shape Dash, and equipped abilities.`,
+      `NPC residents are part of the character ecosystem; Heroes can command them to follow, hide, search, fight, call police, or move toward escape.`,
+      `Exact balance, perks, cosmetics, and unlock levels can change with patches, so treat numbers as version-specific.`
+    ],
+    steps: [
+      `Choose a Hero based on the job you intend to do: scouting objectives, escorting residents, carrying repair items, or distracting Michael.`,
+      `Find residents early and give them useful orders instead of playing as a lone survivor. A resident sent to search or call police can create progress while you work elsewhere.`,
+      `Match items to the character's current job. Repair kits, gas cans, keys, fuse pieces, bolt cutters, weapons, and distraction items are only valuable when moved toward an active route.`,
+      `When playing Michael, pick a target cluster, stalk long enough to improve pressure, then interrupt the objective that would create the fastest escape.`,
+      `Rotate between residents, Heroes, and exit routes. Characters win or lose through map pressure, not through isolated duels.`
+    ],
+    table: {
+      heading: `Confirmed Character Groups`,
+      headers: [`Group`, `Confirmed Names`, `Match Role`, `What Players Should Do`],
+      rows: [
+        [`Legacy Heroes`, `Bob, Lynda, Annie, Laurie`, `Playable civilian side`, `Use them to rescue residents, gather route items, call police, and escape.`],
+        [`New Heroes`, `Jennifer, Tanya, Rachel, Eric, Marcus, Thomas`, `Playable civilian side`, `Fill practical match jobs such as scout, repair runner, escort, or defender.`],
+        [`Michael Myers`, `The Boogeyman`, `Playable killer side`, `Stalk, isolate, disable objectives, and stop police or vehicle escapes.`],
+        [`Residents`, `Match-spawned NPC civilians`, `Rescue and command targets`, `Direct them to hide, follow, search, call cops, fight, defend, or leave through opened routes.`]
+      ]
+    },
+    sections: [
+      {
+        heading: `Legacy Characters in Practice`,
+        body: [`The confirmed movie characters make the roster recognizable, but the live match is built around what they do after spawning. Laurie, Annie, Lynda, and Bob still need to play the same core civilian loop: read the objective prompts, collect route items, keep residents moving, and avoid giving Michael easy isolated kills. A legacy name does not replace teamwork; it gives fans a familiar face inside the rescue plan.`]
+      },
+      {
+        heading: `New Heroes and Team Jobs`,
+        body: [`The six new Heroes give lobbies enough variety for different jobs. One player can sweep houses for keys, tools, weapons, and residents; another can bring repair pieces to a car or gate; another can escort civilians to a cellar or open route. Because objectives and escape opportunities can vary by match, the most useful character is the one whose player adapts fastest to the route that is actually active.`]
+      },
+      {
+        heading: `How Michael Changes the Character Game`,
+        body: [`Michael is not just chasing one Hero at a time. His pressure comes from making the entire character network unsafe: residents stop moving, phones become risky, lights and electronics can be threatened, and open routes need guarding. Strong Michael players identify which Hero is carrying progress, then use stalking and mobility to turn that progress into panic.`]
+      }
+    ],
+    mistakes: [
+      `Choosing a favorite character and ignoring the current objective route.`,
+      `Leaving residents idle instead of assigning them useful commands.`,
+      `Treating NPC residents as background dressing; they are part of the win condition.`,
+      `As Michael, tunneling one noisy Hero while another player quietly opens the escape.`
+    ],
+    faq: [
+      { question: `Who are the confirmed playable Heroes?`, answer: `Official roster information confirms Bob, Lynda, Annie, Laurie, Jennifer, Tanya, Rachel, Eric, Marcus, and Thomas as civilian Heroes.` },
+      { question: `Is Michael Myers playable?`, answer: `Yes. Halloween: The Game is built around a 1v4 setup where one player can play Michael Myers and four players play Heroes.` },
+      { question: `Do characters have fixed escape routes?`, answer: `No reliable source confirms character-locked exits. Escape opportunities and objective states can vary by match, so character choice should support the route your team finds.` }
+    ],
+    sourceNotes: [
+      `Official launch and legacy-character posts confirm the character names and 1v4 structure.`,
+      `Official multiplayer material and recent guides support the resident-command loop used in the practical advice above.`
+    ]
+  },
+  'halloween-the-game-survivors': {
+    quickAnswer: `Survivors, called Heroes in Halloween: The Game, win by rescuing residents and escaping through a route such as a storm cellar, sedan, gate, police wagon, or other match-enabled opportunity. The practical loop is: find residents, assign commands, collect the route items the match asks for, call police when possible, and move people toward the safest escape before Michael collapses the map.`,
+    keyPoints: [
+      `Heroes are not just hiding; they actively rescue and direct Haddonfield residents.`,
+      `Residents can be asked to follow, hide, search, attack, defend, call police, or escape when an exit is available.`,
+      `Escape routes can include storm cellars, a sedan, a gate, and police wagon extraction, with exact availability varying by match.`,
+      `Useful items include route tools, repair supplies, keys, weapons, and distractions.`,
+      `Stamina matters more after launch tuning, so sprint only when moving between cover, breaking line of sight, or carrying urgent progress.`
+    ],
+    steps: [
+      `In the opening minute, enter nearby homes and look for both residents and route clues. Do not spend too long looting one room if objective prompts are already pointing elsewhere.`,
+      `Give residents jobs immediately. A resident calling police or searching another building can save time while your Hero carries a key, repair kit, or gas can.`,
+      `Commit to the clearest route. If you find sedan parts, build around the car; if you find a cellar key or bolt cutters, start moving people toward a cellar; if phone access is available, begin police pressure.`,
+      `Use weapons and distractions to create time, not to start unnecessary fights. Michael usually wins if Heroes gather in one place without finishing the route.`,
+      `Once an exit opens, extract residents and Heroes in an orderly way. Holding a route too long gives Michael time to close distance, sabotage, or catch stragglers.`
+    ],
+    table: {
+      heading: `Hero Match Priorities`,
+      headers: [`Phase`, `Main Job`, `Good Sign`, `Danger Sign`],
+      rows: [
+        [`Opening`, `Find residents and route clues`, `Residents receive commands quickly`, `Players loot silently while residents remain idle`],
+        [`Mid Match`, `Move route items and call police`, `One route is clearly being completed`, `Every Hero chases a different plan`],
+        [`Chase`, `Break line of sight and preserve stamina`, `Michael loses track long enough for progress`, `You sprint in open streets with no destination`],
+        [`Escape`, `Guide residents and leave`, `Exit is used as soon as it is ready`, `Team waits around a completed route`]
+      ]
+    },
+    sections: [
+      {
+        heading: `The Resident Economy`,
+        body: [`The biggest difference from a simple hide-and-seek horror match is that residents are active resources. A Hero who finds three residents and gives each a useful order may create more escape progress than a Hero who personally carries every item. Send residents to call police when phones are available, order vulnerable residents to hide if Michael is nearby, and bring followers to an exit only after the route is nearly usable.`]
+      },
+      {
+        heading: `When to Fight`,
+        body: [`Weapons can buy time, protect a resident, or punish Michael for overcommitting, but they are not the main victory condition. Use a shotgun, rifle, axe, knife, or other confirmed defensive item when it opens space for an objective. Firecrackers and similar distractions are best saved for rescues, doorway escapes, or breaking a chase near a route.`]
+      },
+      {
+        heading: `How to Pick a Route`,
+        body: [`The right escape plan is the one your match is already giving you. A repair kit plus gas can makes the sedan more attractive; a key or bolt cutters near a cellar makes the cellar route faster; active phone access supports police escalation. Because maps are dynamic, avoid waiting for a perfect route that may not appear in the same place next round.`]
+      }
+    ],
+    mistakes: [
+      `Trying to solo-loot the map while residents do nothing.`,
+      `Starting the sedan, gate, and police plan at the same time with no coordination.`,
+      `Using sprint for routine travel and having no stamina when Michael arrives.`,
+      `Keeping followers in dangerous streets before an exit is actually ready.`
+    ],
+    faq: [
+      { question: `Are Survivors called Heroes?`, answer: `Yes. Official material uses Hero for the civilian player side, while many players still search for survivor guides.` },
+      { question: `Can residents help with objectives?`, answer: `Yes. Reliable gameplay coverage describes residents taking commands such as search, call police, follow, hide, attack, defend, and escape.` },
+      { question: `Should I always rush the car?`, answer: `No. The sedan is strong when its items appear early, but a cellar, gate, or police extraction can be faster depending on the match.` }
+    ],
+    sourceNotes: [
+      `Official multiplayer coverage confirms resident commands and dynamic match structure.`,
+      `Recent escape guides independently describe storm cellar, sedan, gate, and police extraction routes.`
+    ]
+  },
+  'halloween-the-game-michael-myers': {
+    quickAnswer: `Michael Myers wins by building pressure, not by chasing randomly. His core loop is to locate clusters with Killer Sense and sound cues, stalk targets to improve threat, use Shape Jump or Shape Dash to appear where Heroes feel safe, then interrupt the objective route that would let residents escape. A good Michael player watches the map economy: phones, cars, gates, cellars, residents, and police pressure all matter.`,
+    keyPoints: [
+      `Killer Sense helps Michael locate civilian activity and likely resident clusters.`,
+      `Stalk rewards line-of-sight pressure and makes later engagements more dangerous.`,
+      `Shape Jump is his signature reposition tool, but official material ties it to darkness and being out of direct line of sight unless supported by abilities.`,
+      `Shape Dash creates chase pressure and can punish survivors who cross open space.`,
+      `Abilities such as Detection Pulse, Blackout, Reality Tear, Evil Presence, Shape Mines, and Shadow Strike change how Michael controls objectives.`
+    ],
+    steps: [
+      `Open by scanning for active houses, resident movement, phones, and early route progress. Do not spend the first minute tunneling a single Hero who is not carrying objective value.`,
+      `Stalk from cover or darkness whenever Heroes are busy with residents, repairs, or phone calls. This lets you threaten the group before starting the chase.`,
+      `Use mobility to cut routes, not just to follow footprints. Shape Jump near likely exits, phone areas, or objective buildings before Heroes finish the interaction.`,
+      `Choose targets by progress. A Hero carrying keys, repair tools, gas, or escorting multiple residents is usually worth more than an isolated decoy.`,
+      `After a down or disruption, rotate immediately to the next threatened objective. Michael becomes strongest when Heroes feel that every route is watched.`
+    ],
+    table: {
+      heading: `Michael Gameplay Loop`,
+      headers: [`Loop Step`, `What It Means`, `Best Use`, `Common Mistake`],
+      rows: [
+        [`Find`, `Use sense, sound, and objective movement`, `Locate grouped residents and active routes`, `Chasing the first person seen`],
+        [`Stalk`, `Build threat before direct contact`, `Watch from darkness or angles while Heroes work`, `Breaking cover too early`],
+        [`Collapse`, `Use jump, dash, or ability pressure`, `Arrive where escape progress is happening`, `Using mobility only after losing a chase`],
+        [`Deny`, `Stop exits, phones, cars, and escorts`, `Force Heroes to restart or scatter`, `Camping an empty area after the route changes`]
+      ]
+    },
+    sections: [
+      {
+        heading: `Stalking With Purpose`,
+        body: [`Stalk is valuable because it lets Michael turn information into future threat. The best moments are when Heroes are distracted by a skill check, a resident command, or a route item. Watch long enough to make the next approach count, then strike when they must choose between finishing the task and running. Patch notes also show that stalk behavior can be tuned, so exact timing should be treated as patch-sensitive.`]
+      },
+      {
+        heading: `Objective Pressure`,
+        body: [`Michael should think in routes. If the team is gathering sedan parts, patrol the car and the nearby buildings that might contain missing pieces. If police calls are progressing, interrupt phone users and watch for arriving officers or wagon pressure. If a cellar or gate opens, punish the escort path rather than chasing a Hero who already left the area.`]
+      },
+      {
+        heading: `Target Selection`,
+        body: [`The highest-value target is usually the player creating escape progress. That can be a repair runner, a resident escort, a phone caller, or a Hero carrying a key item. New Michael players often chase the loudest player; experienced ones ask which player would end the match fastest if left alone.`]
+      }
+    ],
+    mistakes: [
+      `Starting every encounter as a raw chase instead of stalking first.`,
+      `Using Shape Jump into lit or watched positions without considering line of sight.`,
+      `Ignoring phone calls until police pressure has already escalated.`,
+      `Camping one exit while another route becomes active elsewhere.`,
+      `Using Blackout, Detection Pulse, or Reality Tear without a follow-up path to an objective.`
+    ],
+    faq: [
+      { question: `How do you play Michael Myers well?`, answer: `Track objective progress, stalk before committing, use mobility to cut off routes, and target Heroes who are moving residents, calling police, or carrying route items.` },
+      { question: `Does Michael rely on exact cooldown numbers?`, answer: `No guide should depend on fixed cooldowns right now. Exact values can change by patch, but ability roles and timing windows are still useful to learn.` },
+      { question: `What should beginners stop doing?`, answer: `Stop chasing the first visible Hero forever. Michael wins by denying the team economy, not by taking scenic tours through empty streets.` }
+    ],
+    sourceNotes: [
+      `Official multiplayer and progression posts confirm Killer Sense, Stalk, Shape Jump, Shape Dash, and named abilities.`,
+      `Patch notes confirm Stalk, Shape Dash, Reality Tear, Detection Pulse, and Evil Presence have already received launch-window tuning.`,
+      `Recent guide coverage supports Blackout, Reality Tear, and Detection Pulse as practical objective-pressure tools.`
+    ]
+  },
+  'halloween-the-game-maps': {
+    quickAnswer: `Halloween: The Game has four confirmed launch maps: East Haddonfield, Haddonfield Heights, Orange Grove Estates, and Haddonfield Town Center. They are not just reskins. East Haddonfield leans rural and spread out, Haddonfield Heights is the familiar residential neighborhood around the Myers and Strode homes, Orange Grove Estates is a larger suburban estate area with multi-story houses and yards, and Haddonfield Town Center concentrates players around storefronts, civic buildings, roads, and the cemetery. Exact item, resident, and exit positions can vary by match.`,
+    keyPoints: [
+      `East Haddonfield: rural edge of town with landmarks such as The Rabbit in Red Lounge, Phelps Garage, Midwest Feed Company, farmland, and open roads.`,
+      `Haddonfield Heights: classic residential Haddonfield with the Myers house, Strode house, and a visible water tower.`,
+      `Orange Grove Estates: wealthier residential blocks with multi-story homes, detached garages, balconies, fences, hedges, park space, playground, basketball court, Doyle house, and Wallace house.`,
+      `Haddonfield Town Center: business and civic district with Nichols Hardware, A-Side Music Store, Hill Garden Center, Patty's Pub, post office, auto repair, and the cemetery.`,
+      `Dynamic map features mean route items and exits should be treated as match-specific rather than memorized as fixed spawns.`
+    ],
+    steps: [
+      `At spawn, identify the map by its biggest landmark cluster before looting deeply. This tells your team whether rotations are likely to be street-heavy, house-heavy, or business-heavy.`,
+      `Call out route clues by landmark, not vague directions. Saying garage, pub, cemetery, Myers house, or park is faster than saying over here.`,
+      `On wider maps, move repair items and residents earlier because long returns are dangerous once Michael has pressure.`,
+      `On dense residential maps, check back doors, fences, garages, and dark interiors before committing to a chase route.`,
+      `As Michael, patrol the likely routes between landmarks instead of standing on one objective. Dynamic exits reward area control.`
+    ],
+    table: {
+      heading: `Launch Map Differences`,
+      headers: [`Map`, `Recognizable Landmarks`, `Layout Feel`, `Hero Consideration`, `Michael Consideration`],
+      rows: [
+        [`East Haddonfield`, `Rabbit in Red Lounge, Phelps Garage, Midwest Feed Company, farmland`, `More rural, more spread out, more exposed travel`, `Plan rotations and avoid crossing long roads without stamina`, `Cut off open-road movement and punish isolated item runners`],
+        [`Haddonfield Heights`, `Myers house, Strode house, water tower`, `Classic residential blocks and house-to-house movement`, `Use interiors and yards, but do not trap followers in dead-end rooms`, `Watch familiar homes and intercept escorts moving between them`],
+        [`Orange Grove Estates`, `Doyle house, Wallace house, large homes, garages, balconies, park areas`, `Layered suburban homes, yards, fences, hedges, vertical angles`, `Clear floors methodically and move residents before Michael locks a house down`, `Pressure stairways, exits, and yard crossings after forcing people inside`],
+        [`Haddonfield Town Center`, `Hardware store, music store, pub, post office, auto repair, cemetery`, `Landmark-dense business district with streets and storefronts`, `Use named businesses for callouts and regroup around completed route pieces`, `Control intersections and objective buildings where routes naturally converge`]
+      ]
+    },
+    sections: [
+      {
+        heading: `East Haddonfield`,
+        body: [`East Haddonfield is the rural edge of the launch map set. Official location material highlights The Rabbit in Red Lounge, Phelps Garage, Midwest Feed Company, farmland, and open roads, which makes travel feel more exposed than in a pure neighborhood map. Heroes should avoid drifting alone across roads with key items; Michael should look for those long rotations and cut them off before the team can regroup.`]
+      },
+      {
+        heading: `Haddonfield Heights`,
+        body: [`Haddonfield Heights is the most immediately recognizable suburban setting, anchored by the Myers house, Strode house, and water tower. Expect house interiors, yards, and neighborhood routing to matter. Heroes should check multiple exits before escorting residents inside homes. Michael can create pressure by moving between the familiar houses instead of chasing through every room.`]
+      },
+      {
+        heading: `Orange Grove Estates`,
+        body: [`Orange Grove Estates is built around larger suburban properties: multi-story homes, garages, balconies, fences, hedges, recreational areas, and the Doyle and Wallace houses. This creates more vertical and yard-based decision-making. Heroes need to avoid splitting followers across floors; Michael can force panic by controlling stairs, doorways, and the transitions between homes and yards.`]
+      },
+      {
+        heading: `Haddonfield Town Center`,
+        body: [`Town Center gives players the clearest landmark vocabulary: hardware store, music store, pub, post office, auto repair, cemetery, and other storefront-style areas. That makes callouts easier, but it also creates predictable crossing points. Heroes should use landmarks to coordinate route items quickly; Michael should watch intersections, phone-capable buildings, and the paths from businesses toward exits.`]
+      }
+    ],
+    mistakes: [
+      `Using the same route plan on all four maps.`,
+      `Memorizing fixed item positions instead of reading the match's active objective prompts.`,
+      `Giving vague callouts when the map has strong landmark names.`,
+      `As Michael, camping a single landmark while residents and route items move elsewhere.`
+    ],
+    faq: [
+      { question: `How many maps are confirmed?`, answer: `Four launch maps are confirmed: East Haddonfield, Haddonfield Heights, Orange Grove Estates, and Haddonfield Town Center.` },
+      { question: `Are item spawns fixed?`, answer: `No reliable official source supports fixed guaranteed item coordinates. Specific item and exit positions can vary by match.` },
+      { question: `Which map is best for beginners?`, answer: `Haddonfield Town Center and Haddonfield Heights are easier to communicate on because their landmarks are very readable, but match objectives still matter more than map preference.` }
+    ],
+    sourceNotes: [
+      `Official map location posts confirm the four launch maps and the landmark details summarized here.`,
+      `Official multiplayer material confirms dynamic map features and randomized match elements.`
+    ]
+  },
+  'halloween-the-game-how-to-escape': {
+    quickAnswer: `To escape in Halloween: The Game, look for the match's active escape opportunities and commit to one route. Current reliable guides consistently describe four primary routes: storm cellar, sedan, gate, and police wagon. Some guides also describe a conditional police car escape after a police encounter, but that route is less consistently documented and should be treated as opportunistic. Exact locations may vary by match, and mechanics may change with patches.`,
+    keyPoints: [
+      `Storm Cellar: usually opened with an Escape Key or Bolt Cutters; some matches may require clearing boards or vines first.`,
+      `Sedan: repair the engine, add fuel, find the keys, then survive the driving escape; crashes or Michael pressure can ruin progress.`,
+      `Gate: clear blockers, restore power or fuse progress when required, then unlock or cut the final barrier.`,
+      `Police Wagon: escalates from repeated successful police calls and does not behave like a simple item route.`,
+      `Police Car: reported by some current guides as a conditional escape after police events, but less reliable than the four main routes.`
+    ],
+    steps: [
+      `First, identify the route your match is actually offering. Check objective prompts, nearby landmarks, and discovered escape icons instead of assuming last match's layout.`,
+      `If you find an Escape Key or Bolt Cutters, scout storm cellars and gates. These tools can convert a discovered exit into a real escape quickly.`,
+      `If you find a Repair Kit, Gas Can, or Sedan Keys, start a car plan. Assign one player to protect the item runner and another to keep residents moving.`,
+      `If phones and residents are accessible, start police pressure early. Repeated calls can bring officers and eventually police wagon extraction.`,
+      `Once a route opens, leave with residents and Heroes instead of over-looting. Michael becomes stronger when the team waits around a completed exit.`
+    ],
+    table: {
+      heading: `Escape Methods`,
+      headers: [`Escape Method`, `What You Need`, `What To Do`, `Main Risk`, `Dynamic / Fixed?`],
+      rows: [
+        [`Storm Cellar`, `Escape Key or Bolt Cutters; sometimes a weapon/tool to clear blockers`, `Find the cellar, open or cut the lock, clear boards/vines if present, then move Heroes and residents through it`, `Michael can find the route, interrupt the opener, or close pressure around the hatch`, `Dynamic location and blockers`],
+        [`Sedan`, `Repair Kit, Gas Can, Sedan Keys`, `Repair the car, fuel it, start it, then drive out through the escape sequence`, `Crashes, Michael attacks, Blackout-style disruption, or missing parts can stall the route`, `Dynamic parts and car state`],
+        [`Gate`, `Fuse or power progress when required; Escape Key or Bolt Cutters for the final lock`, `Clear blockers, restore the needed mechanism, complete the interaction, then unlock or cut through`, `The gate can become an obvious ambush point once discovered`, `Dynamic location and requirements`],
+        [`Police Wagon`, `Successful police calls and match escalation`, `Use phones or command residents to call police, survive until officers and wagon pressure arrive, then extract`, `Michael can interrupt callers, kill or pressure officers, and force the team away`, `Dynamic timing and escalation`],
+        [`Police Car`, `A police event and usable car/key state reported in current guides`, `Use it only if the match event makes it available; treat it as a bonus route, not the main plan`, `Availability is less predictable and Michael can prevent the setup`, `Conditional, not guaranteed`]
+      ]
+    },
+    sections: [
+      {
+        heading: `Storm Cellar Route`,
+        body: [`The cellar is usually the cleanest low-noise escape when your team finds the right opener. Current guides describe Escape Keys and Bolt Cutters as common ways to open it, with some matches adding physical blockers such as boards or vines. Bring followers only when the hatch is nearly ready, because a crowd standing around a discovered cellar gives Michael a perfect collapse point.`]
+      },
+      {
+        heading: `Sedan Route`,
+        body: [`The car route is item-heavy but powerful. Guides consistently describe a Repair Kit, Gas Can, and Sedan Keys as the core chain: fix the engine, add fuel, start the car, then drive out. The risk is that every missing part creates another trip, and every trip gives Michael a chance to stalk the runner or sabotage the area. Do not start the car route alone unless the parts are already close together.`]
+      },
+      {
+        heading: `Gate Route`,
+        body: [`The gate route asks the team to solve a visible map exit rather than hide forever. Current coverage describes clearing blockers, restoring required power or fuse progress, and then opening the final lock with a key or cutters. This route rewards coordination because one player can prep the gate while another moves residents or distracts Michael.`]
+      },
+      {
+        heading: `Police in the Escape Plan`,
+        body: [`Police are not just flavor text. Heroes and residents can call authorities through available phones, and repeated successful calls can escalate the match toward officers and a police wagon escape. This makes phone control a real win path. If Michael is already camping a physical exit, police pressure can force him to choose between guarding that route and stopping the next call.`]
+      },
+      {
+        heading: `What Changes Each Match`,
+        body: [`Exact item positions, exit placements, active blockers, resident locations, and safe travel paths can vary because the game uses dynamic map features. The right way to play is to recognize the route type, not memorize a fixed coordinate. Mechanics may also change with patches, so treat exact timings and cooldowns as version-specific.`]
+      }
+    ],
+    mistakes: [
+      `Waiting for the perfect escape method instead of finishing the route already in progress.`,
+      `Carrying route items without telling teammates where they are going.`,
+      `Calling police once and assuming the job is done. Police pressure depends on continued successful escalation.`,
+      `Gathering residents at an unopened exit and feeding Michael multiple targets.`,
+      `Treating the reported police car escape as guaranteed every match.`
+    ],
+    faq: [
+      { question: `What are the main escape routes?`, answer: `The main routes described by multiple current guides are storm cellar, sedan, gate, and police wagon. A police car escape is also reported, but should be treated as conditional until more official detail is available.` },
+      { question: `What items do I need to escape?`, answer: `It depends on the route. Cellars and gates often need Escape Keys or Bolt Cutters, the sedan uses Repair Kit, Gas Can, and Sedan Keys, and police wagon pressure requires successful calls rather than a carried item.` },
+      { question: `Why does the same route feel different next match?`, answer: `Halloween: The Game uses dynamic map features and randomized match elements, so exact locations, blockers, and route states can change.` }
+    ],
+    sourceNotes: [
+      `AllThings.How, GamesRadar, Mobalytics/Gamebase, and GamerBlurb independently describe the main escape routes used here.`,
+      `Official Steam and multiplayer descriptions confirm dynamic map features, NPC interactions, police/authority gameplay, and civilian survival objectives.`
+    ]
+  },
+  'halloween-the-game-objectives': {
+    quickAnswer: `Objectives in Halloween: The Game are the concrete tasks that turn a match from hiding into escaping: rescue residents, command them, discover escape opportunities, repair or unlock routes, call police, and move people out before Michael stops the chain. The exact prompts can vary, but current guides report objectives such as Save Haddonfield Residents, Help Residents Escape, Save Special Targets, Find a Way to Escape, Use Storm Cellar, Repair Car, and police-call escalation.`,
+    keyPoints: [
+      `Objectives usually connect to residents, escape routes, or police escalation.`,
+      `Special Targets can appear as randomized active NPCs or priority civilians, so check match prompts early.`,
+      `Repair-style objectives commonly point toward the sedan or a powered gate route.`,
+      `Unlock/cut objectives commonly point toward storm cellars, gates, or other locked exits.`,
+      `Police objectives create pressure over time and can lead toward officers or police wagon extraction.`
+    ],
+    steps: [
+      `Read the opening objective prompt and name the likely route out loud: residents, car, cellar, gate, or police.`,
+      `Assign one player or resident to information gathering while another starts moving route items.`,
+      `Do not hoard items just because they look rare. Take them to the objective they serve.`,
+      `When the objective changes, rotate quickly. A completed repair or successful phone call usually creates a new risk point Michael can pressure.`,
+      `Finish with extraction, not score-chasing. The objective chain is only complete when Heroes and residents actually leave.`
+    ],
+    table: {
+      heading: `Objective Types`,
+      headers: [`Objective`, `What It Usually Means`, `Items or Actions`, `Player Priority`],
+      rows: [
+        [`Save Residents`, `Find NPC civilians and prevent Michael from clearing the map`, `Search buildings, command residents, escort them`, `Do this early; idle residents are lost time`],
+        [`Help Residents Escape`, `Move NPCs through a usable route`, `Open cellar, gate, car, wagon, or other active exit`, `Open the route before gathering followers`],
+        [`Find a Way to Escape`, `Scout for active route opportunities`, `Check landmarks, prompts, exit icons, route items`, `Commit once a route is plausible`],
+        [`Repair Car`, `Build the sedan escape`, `Repair Kit, Gas Can, Sedan Keys`, `Protect the runner and avoid unnecessary detours`],
+        [`Use Storm Cellar`, `Unlock or cut open a cellar exit`, `Escape Key, Bolt Cutters, possible blocker clearing`, `Quiet route, but risky once Michael discovers it`],
+        [`Call Police`, `Escalate authority response`, `Use phones or residents when available`, `Repeat and protect callers until extraction pressure appears`]
+      ]
+    },
+    sections: [
+      {
+        heading: `Objective Priority`,
+        body: [`If two objectives are available, choose the one closest to completion. A half-fueled car with the keys found is worth more than a theoretical gate on the far side of the map. A resident already near an opened cellar should be extracted before the team starts another repair chain. The match rewards finishing practical progress.`]
+      },
+      {
+        heading: `Special Targets`,
+        body: [`Official multiplayer information describes randomized active Special Targets and NPC involvement. Treat these as objective pressure points. If the match marks a target, protecting or moving that person can be more important than looting another house. Michael will often use the same target as bait, so approach with stamina and an exit plan.`]
+      },
+      {
+        heading: `How Objectives Change Michael's Route`,
+        body: [`Every completed task tells Michael where to go next. A phone call reveals police pressure, a repaired car creates a car-defense phase, and an opened route creates an extraction path. Strong Hero teams use that information too: one player shows pressure at the obvious route while another quietly moves residents toward the real exit.`]
+      }
+    ],
+    mistakes: [
+      `Reading objectives as flavor text instead of routing instructions.`,
+      `Starting every objective and finishing none.`,
+      `Keeping objective items in inventory while teammates search for the same item elsewhere.`,
+      `Ignoring Special Targets until Michael has already found them.`
+    ],
+    faq: [
+      { question: `Are objectives fixed every match?`, answer: `The broad objective types are consistent, but exact locations, route availability, residents, and blockers can vary by match.` },
+      { question: `Which objective should I do first?`, answer: `Find residents and identify the nearest viable escape route. Early police pressure is also valuable if phones are accessible.` },
+      { question: `Do objectives tell me the exact item location?`, answer: `Not always. Use prompts and landmarks to narrow the search, then coordinate so multiple players are not duplicating the same route.` }
+    ],
+    sourceNotes: [
+      `Recent civilian-role guides document objective prompt examples and resident interactions.`,
+      `Official multiplayer and Steam descriptions support dynamic map features, NPC interactions, and survival objectives.`
+    ]
+  },
+  'halloween-the-game-escape-routes': {
+    quickAnswer: `The best-documented escape routes are storm cellar, sedan, gate, and police wagon. Multiple current guide sources agree on these four. A police car escape is also reported, but because it depends on police events and is less consistently described, treat it as a situational bonus rather than your main plan. Route locations and requirements can vary by match.`,
+    keyPoints: [
+      `Storm Cellar is usually a fast exit if your team has an Escape Key or Bolt Cutters and can clear any blockers.`,
+      `Sedan needs a longer item chain: Repair Kit, Gas Can, and Sedan Keys.`,
+      `Gate can require clearing blockers, restoring fuse or power progress, and opening the final lock.`,
+      `Police Wagon depends on successful police-call escalation and surviving the response phase.`,
+      `Police Car is reported in some guides after police-related events, but should not be planned as guaranteed.`
+    ],
+    steps: [
+      `Sort discovered routes into fast, item-heavy, and escalation routes. Cellar is often fast, sedan is item-heavy, and police wagon is escalation-based.`,
+      `Place residents near safety only after the route is close to usable. Residents waiting in the wrong place make Michael's job easier.`,
+      `Keep one player watching for Michael while another completes the lock, repair, phone, or fuse interaction.`,
+      `If Michael hard-camps a route, switch pressure. A police call or second route can force him to move.`,
+      `When a route opens, use it. Overstaying after success is one of the easiest ways to lose rescued residents.`
+    ],
+    table: {
+      heading: `Route Comparison`,
+      headers: [`Route`, `Core Requirement`, `Best When`, `Weakness`],
+      rows: [
+        [`Storm Cellar`, `Key or Bolt Cutters, plus any match blockers`, `You find opener tools early and nearby residents are movable`, `Small area can become an ambush once discovered`],
+        [`Sedan`, `Repair Kit, Gas Can, Sedan Keys`, `Parts appear close enough to coordinate quickly`, `Multiple trips and crash risk create many failure points`],
+        [`Gate`, `Clear blockers, restore mechanism, unlock or cut final barrier`, `Team can defend a visible route and split tasks`, `Michael can read the route and camp the final interaction`],
+        [`Police Wagon`, `Repeated successful police calls and response escalation`, `Phones or resident callers are accessible`, `Slow pressure; Michael can interrupt callers and officers`],
+        [`Police Car`, `Conditional police event and usable vehicle state`, `The opportunity appears naturally during police pressure`, `Not reliable enough to build the whole match around`]
+      ]
+    },
+    sections: [
+      {
+        heading: `Cellar Versus Gate`,
+        body: [`Cellars and gates both reward opener tools, but they play differently. A cellar can be quieter and faster if the team has the right item, while a gate usually feels more exposed and may require a longer setup. If Michael is already near one, the other may become the safer route simply because it buys distance.`]
+      },
+      {
+        heading: `Car Route Timing`,
+        body: [`The sedan is strong only when your team turns parts into progress quickly. A Repair Kit sitting in one house, a Gas Can in another, and keys in a third is a coordination problem, not a finished plan. Use residents and teammates to scout while the item carrier takes the shortest safe path to the car.`]
+      },
+      {
+        heading: `Police Routes`,
+        body: [`Police pressure is strongest when started early and repeated. A single call can help, but current guides describe escalation toward arriving officers and a police wagon as the real route. Michael players know this, so expect phone areas and callers to become dangerous once the team begins the police plan.`]
+      }
+    ],
+    mistakes: [
+      `Calling every possible exit an equal plan. Some routes are faster only when their items are already found.`,
+      `Driving without knowing the exit path or with Michael positioned nearby.`,
+      `Bringing residents to a gate before the blocker, fuse, or lock step is solved.`,
+      `Assuming a reported conditional police car will appear in every match.`
+    ],
+    faq: [
+      { question: `What escape route should I prioritize?`, answer: `Prioritize the route with the most completed requirements. A nearly open cellar beats an untouched sedan; a ready car beats an uncertain police wagon.` },
+      { question: `Can Michael stop an open route?`, answer: `Michael can still pressure the path, interrupt stragglers, and in some reported cases close or disrupt route progress. Treat an open route as urgent, not safe.` },
+      { question: `Are route positions the same every game?`, answer: `No. The game uses dynamic map features, so route positions, blockers, and nearby items can change.` }
+    ],
+    sourceNotes: [
+      `AllThings.How, GamesRadar, Mobalytics/Gamebase, and GamerBlurb align on cellar, sedan, gate, and police wagon as major escape routes.`,
+      `Official material supports dynamic map features and authority-alert survival play.`
+    ]
+  },
+  'halloween-the-game-how-to-call-police': {
+    quickAnswer: `To call police in Halloween: The Game, find a usable phone or direct an eligible resident to make the call, complete or protect the interaction, then keep escalating with additional successful calls until police response creates real pressure and can lead toward a police wagon escape. Police are not an instant win button: Michael can interrupt callers, pressure phone buildings, and exploit teams that stop doing other objectives.`,
+    keyPoints: [
+      `Phones and resident commands are the practical ways current guides describe police calls.`,
+      `A successful call can trigger police-response messages and later escalation.`,
+      `Repeated calls matter because police wagon extraction is tied to escalation rather than one quick item pickup.`,
+      `Calling police competes with other routes; protect callers while someone else advances an escape.`,
+      `Police behavior and timing can change with patches, so avoid relying on exact timers.`
+    ],
+    steps: [
+      `Find a phone-capable location or a resident who can be ordered to call police.`,
+      `Check Michael's pressure before starting. If he is nearby, have a teammate distract, defend, or move him away first.`,
+      `Start the call and finish the required interaction or skill check. Do not abandon it unless Michael is about to secure a kill.`,
+      `After a successful call, rotate. Michael may return to the phone location, so repeat pressure from another phone or keep another route moving.`,
+      `When officers or wagon pressure arrives, shift from calling to extraction. Move residents and Heroes toward the opportunity instead of continuing to loot.`
+    ],
+    table: {
+      heading: `Police Call Flow`,
+      headers: [`Step`, `What To Do`, `Why It Matters`, `Michael Counterplay`],
+      rows: [
+        [`Locate`, `Find phones or residents who can call`, `Police pressure starts only when the team finds an access point`, `Patrol likely buildings and listen for activity`],
+        [`Protect`, `Guard the caller or distract Michael`, `Interrupted calls waste time and reveal intent`, `Collapse on phones and isolate callers`],
+        [`Repeat`, `Stack successful calls when available`, `Escalation can lead toward police wagon extraction`, `Force callers to scatter or stop calling`],
+        [`Extract`, `Move people once police pressure becomes usable`, `The win condition is leaving, not just making calls`, `Attack escorts and disrupt the final route`]
+      ]
+    },
+    sections: [
+      {
+        heading: `Why Police Calls Are a Route`,
+        body: [`Police calls are not only defensive support. Current guide coverage describes police escalation with officers and a police wagon escape path, while official descriptions confirm that civilians can alert authorities. That means a phone is effectively an objective station. If your team protects calls early, Michael has to defend more than physical exits.`]
+      },
+      {
+        heading: `Using Residents to Call`,
+        body: [`Official multiplayer information and guide coverage describe residents taking commands, including calling the cops. This is powerful because it lets player Heroes carry items, escort others, or scout routes while a resident contributes to police pressure. The risk is that an exposed resident can become an easy target, so do not send callers into danger without reading Michael's location.`]
+      },
+      {
+        heading: `When to Stop Calling`,
+        body: [`Stop calling when extraction is ready or when another route is clearly faster. A team that keeps repeating phone calls while a car, cellar, or gate is already open is wasting its safest window. The police plan works best as pressure that becomes an exit, not as background noise.`]
+      }
+    ],
+    mistakes: [
+      `Making one call and assuming police will solve the match.`,
+      `Starting calls while Michael is already inside the building.`,
+      `Sending residents to call with no follow-up protection.`,
+      `Ignoring a ready physical escape because the team is obsessed with police escalation.`
+    ],
+    faq: [
+      { question: `Can residents call police?`, answer: `Yes. Current gameplay coverage describes residents being ordered to call the cops, and official material confirms NPC interaction as a core part of multiplayer.` },
+      { question: `Does one call summon the police wagon?`, answer: `Reliable guides describe police response as escalation, so do not treat a single call as a guaranteed wagon. Keep progressing and watch match prompts.` },
+      { question: `Should Michael defend phones?`, answer: `Yes. Phone access can become a win path, so Michael should pressure callers and rotate if the team starts stacking calls.` }
+    ],
+    sourceNotes: [
+      `Official Steam and multiplayer descriptions support alerting authorities and NPC interactions.`,
+      `Recent civilian and escape guides describe phone calls, resident police commands, officer response, and police wagon extraction.`
+    ]
+  },
+  'halloween-the-game-michael-myers-abilities': {
+    quickAnswer: `Michael's kit is built around information, darkness, sudden repositioning, and objective denial. The core tools to understand are Killer Sense, Stalk, Shape Jump, and Shape Dash, with equipable abilities such as Detection Pulse, Shape Mines, Evil Presence, Shadow Strike, Blackout, and Reality Tear changing how he finds, chases, and blocks Heroes. Exact cooldown values may change by patch, but the use cases are clear enough to build a match plan.`,
+    keyPoints: [
+      `Killer Sense helps locate civilian activity and keeps Michael from wandering blindly.`,
+      `Stalk turns observation into threat; use it before committing to a chase.`,
+      `Shape Jump moves Michael through darkness and out-of-sight angles, making light control important.`,
+      `Shape Dash helps punish open movement and finish chase pressure.`,
+      `Detection Pulse, Blackout, and Reality Tear are repeatedly highlighted by current guide coverage as strong practical tools.`
+    ],
+    steps: [
+      `Use information first. Start with Killer Sense or Detection Pulse-style reads before choosing where to move.`,
+      `Stalk targets who are busy with calls, repairs, route items, or residents. A distracted Hero gives better value than a random chase.`,
+      `Shape Jump to the objective path, not just to the last place you saw someone. Predict where the runner must go next.`,
+      `Use Blackout or similar denial when Heroes are relying on lights, electronics, phones, or vehicle progress.`,
+      `Save Reality Tear-style pressure for situations where normal Shape Jump rules would keep you out of the play.`
+    ],
+    table: {
+      heading: `Michael Ability Uses`,
+      headers: [`Ability / Tool`, `What It Does`, `When To Use It`, `Common Mistake`],
+      rows: [
+        [`Killer Sense`, `Helps locate civilian activity`, `Opening search, mid-match rotations, finding likely clusters`, `Ignoring objective context after sensing movement`],
+        [`Stalk`, `Builds threat through observation`, `Before committing near phones, cars, residents, or exits`, `Breaking cover too soon`],
+        [`Shape Jump`, `Repositions through darkness and unseen angles`, `Cutting off routes or appearing near objectives`, `Trying to jump through obvious light and line of sight`],
+        [`Shape Dash`, `Creates burst chase pressure`, `Punishing open crossings or finishing a near catch`, `Dashing without an exit angle or target plan`],
+        [`Detection Pulse`, `Improves information on civilians and residents`, `When the team goes quiet or objectives split`, `Using it and then chasing low-value targets`],
+        [`Blackout`, `Disrupts lights and electronics in Michael's area`, `Before collapsing on phones, cars, or lit safe zones`, `Using it far from the objective it should deny`],
+        [`Reality Tear`, `Lets Michael bend normal reposition limits`, `When light or line-of-sight rules would otherwise block pressure`, `Spending it for movement with no objective payoff`],
+        [`Evil Presence`, `Pressures nearby civilians and stamina economy`, `During grouped chases or exit defense`, `Letting Heroes reset instead of staying close`],
+        [`Shape Mines`, `Creates trap-style area control`, `Around likely objective paths or exits`, `Placing traps where no one needs to travel`],
+        [`Shadow Strike`, `Adds ambush pressure`, `After stalking or during dark approach angles`, `Treating it like a replacement for map control`]
+      ]
+    },
+    sections: [
+      {
+        heading: `Information Abilities`,
+        body: [`Detection Pulse and Killer Sense-style information are strongest when they answer a decision: which objective is active, where residents are being moved, or which player is carrying route progress. If the pulse sends you toward a lone decoy while the sedan is nearly repaired, the ability did not fail; the target choice did.`]
+      },
+      {
+        heading: `Darkness and Movement`,
+        body: [`Official material ties Shape Jump to darkness and being out of direct line of sight, which makes map lighting a real part of Michael's kit. Reality Tear matters because guide coverage describes it as a way to apply jump pressure when normal conditions would be restrictive. Use these tools to arrive before the objective completes, not after Heroes already leave.`]
+      },
+      {
+        heading: `Denial Abilities`,
+        body: [`Blackout, Evil Presence, Shape Mines, and similar pressure tools are strongest near the team's win condition. A blackout around a dead area is only scary for a moment; a blackout near a phone, car, gate, or final escort path can erase real progress. Think of abilities as route control, not isolated jump scares.`]
+      }
+    ],
+    mistakes: [
+      `Memorizing cooldowns before learning when each ability creates objective pressure.`,
+      `Using information abilities with no plan for the target revealed.`,
+      `Holding strong abilities too long while Heroes finish a route.`,
+      `Jumping into visible, lit positions where Heroes already expect you.`
+    ],
+    faq: [
+      { question: `What are Michael's most important abilities?`, answer: `For practical play, learn Killer Sense, Stalk, Shape Jump, Shape Dash, Detection Pulse, Blackout, and Reality Tear first. They define information, mobility, and objective denial.` },
+      { question: `Are cooldowns listed here?`, answer: `No. Launch-window patches already adjusted several Michael tools, so exact cooldown values should be checked in-game for your current version.` },
+      { question: `Is Blackout only for scares?`, answer: `No. It is most useful when it disrupts electronics, lights, phones, vehicles, or a route the Heroes are actively using.` }
+    ],
+    sourceNotes: [
+      `Official progression and multiplayer posts confirm named Michael tools and the role of darkness for Shape Jump.`,
+      `Official 1.0.1 patch notes confirm launch-window tuning for Stalk, Shape Dash, Reality Tear, Detection Pulse, and Evil Presence.`,
+      `Recent ability guides highlight Detection Pulse, Blackout, and Reality Tear as practical build choices.`
+    ]
+  },
+  'halloween-the-game-items': {
+    quickAnswer: `The important items in Halloween: The Game are route items first: Escape Keys, Bolt Cutters, Repair Kits, Gas Cans, Sedan Keys, fuses or power parts, and weapons or distractions used to buy time. Repair Kit is directly reinforced by official patch notes, while current guide coverage consistently connects keys, cutters, gas, repair, and sedan keys to the major escape routes. Exact spawn locations may vary by match.`,
+    keyPoints: [
+      `Escape Key: opens locked route steps such as cellars or gates when the match supports it.`,
+      `Bolt Cutters: can open or cut certain locks and are often tied to cellar or gate progress.`,
+      `Repair Kit: used for vehicle or repair objectives; official patch notes mention repair kit spawn fixes.`,
+      `Gas Can and Sedan Keys: key pieces of the sedan escape chain.`,
+      `Fuse or power items: tied to gate or powered objective steps when the match presents them.`,
+      `Weapons and distractions are time-buying tools, not the main win condition.`
+    ],
+    steps: [
+      `Identify the item category before carrying it across the map: opener, repair part, fuel/key, fuse/power, weapon, distraction, or mobility.`,
+      `Call out the item and destination immediately. A Repair Kit is only useful if the car or repair objective knows it is coming.`,
+      `Do not drop route items in random rooms. If you must switch items, leave them near the objective or a named landmark.`,
+      `Give weapons to the player protecting an interaction or escorting residents, not necessarily the player who found them.`,
+      `When an escape route is ready, stop looting for better items and leave.`
+    ],
+    table: {
+      heading: `Important Items and Uses`,
+      headers: [`Item`, `Use`, `Best Route`, `Reliability Note`],
+      rows: [
+        [`Escape Key`, `Unlocks certain escape points`, `Storm Cellar or Gate`, `Route and lock placement may vary`],
+        [`Bolt Cutters`, `Cuts locks or opens certain blocked exits`, `Storm Cellar or Gate`, `Do not assume every locked route accepts cutters`],
+        [`Repair Kit`, `Repairs car or damaged route state`, `Sedan`, `Official patch notes confirm repair kit spawn tuning`],
+        [`Gas Can`, `Fuels the sedan`, `Sedan`, `Useful only after or alongside repair progress`],
+        [`Sedan Keys`, `Starts the car`, `Sedan`, `The car still requires safe driving and route execution`],
+        [`Fuse / Power Part`, `Restores objective mechanism`, `Gate or powered route`, `Requirement depends on active match objective`],
+        [`Shotgun / Rifle / Ammo`, `Buys space and protects interactions`, `Any contested route`, `Use defensively; ammo and exact availability vary`],
+        [`Wood Axe / Knife`, `Melee defense or blocker clearing`, `Cellar, Gate, escort defense`, `Close range is risky against Michael`],
+        [`Firecrackers`, `Distraction and escape timing`, `Chase break or route defense`, `Best when saved for a real rescue window`],
+        [`Bicycle / mobility pickup`, `Reported mobility option in current guide coverage`, `Long rotations`, `Availability and exact behavior should be checked in current patch`]
+      ]
+    },
+    sections: [
+      {
+        heading: `Route Items Come First`,
+        body: [`If an item opens a route, it is more valuable than a weapon. A Hero carrying a Repair Kit, Gas Can, Sedan Keys, Escape Key, Bolt Cutters, or fuse piece should move with a destination. The team should protect that movement because Michael can win by forcing route items to sit unused on the floor.`]
+      },
+      {
+        heading: `Weapons and Distractions`,
+        body: [`Weapons are best used to protect objective interactions, defend residents, or create a few seconds of space. Firecrackers and similar distraction tools should be saved for a chase break, rescue, phone call, or final exit push. Starting a fight without route progress usually helps Michael by clustering the team.`]
+      },
+      {
+        heading: `Spawn Rules`,
+        body: [`Do not build your match around guaranteed coordinates. Official and guide material support dynamic map features, and launch patch notes have already adjusted repair kit spawning. Exact item positions, route blockers, and availability can vary by match and version.`]
+      }
+    ],
+    mistakes: [
+      `Holding a route item while continuing to loot unrelated rooms.`,
+      `Using the only defensive item for a flashy fight instead of protecting the exit interaction.`,
+      `Dropping keys or parts without a landmark callout.`,
+      `Assuming an item found in one house will spawn there every match.`
+    ],
+    faq: [
+      { question: `What items should beginners care about most?`, answer: `Learn Escape Key, Bolt Cutters, Repair Kit, Gas Can, Sedan Keys, fuse or power parts, and basic weapons or distractions first.` },
+      { question: `Are item locations fixed?`, answer: `No reliable source supports fixed guaranteed coordinates. Exact locations may vary by match.` },
+      { question: `Should I fight Michael with weapons?`, answer: `Use weapons to create time for objectives, not as the main plan. Escaping and rescuing residents still matter most.` }
+    ],
+    sourceNotes: [
+      `Official patch notes specifically mention repair kit spawn behavior.`,
+      `Recent escape and civilian-role guides connect keys, bolt cutters, repair kits, gas cans, sedan keys, fuses, weapons, and distractions to gameplay routes.`
+    ]
+  },
+  'halloween-the-game-walkthrough': {
+    quickAnswer: `Story Mode, The Night He Came Home, is a Michael-focused single-player campaign that current walkthrough sources describe as a chapter-based progression from escaping Smith's Grove to moving through Haddonfield landmarks and the babysitter story arc. Treat this page as a practical route overview: finish the chapter objective, learn the Michael tool introduced there, collect optional items only when safe, and move forward instead of roaming every corner.`,
+    keyPoints: [
+      `Official material confirms Story Mode: The Night He Came Home and a Michael Myers perspective.`,
+      `Current walkthrough coverage reports a prologue at Smith's Grove followed by Haddonfield chapters.`,
+      `Reported chapter beats include The Road to Haddonfield, Main Street, Returning Home, The Babysitters, and Into The Shadows.`,
+      `Story chapters teach movement, stalking, Shape Jump, target pressure, and final pursuit structure.`,
+      `Collectibles, optional challenges, and rewards can vary in importance; finish the objective before hunting every extra.`
+    ],
+    steps: [
+      `Prologue: Escape From Smith's Grove. Learn basic movement, exits, power or gate interactions, and how the campaign wants you to read objective prompts.`,
+      `Chapter 1: The Road to Haddonfield. Follow the route into town, use stealth and pursuit fundamentals, and avoid over-searching before the chapter path opens.`,
+      `Chapter 2: Main Street. Use the town-center landmark flow, including reported Rabbit in Red guidance, to practice moving between public buildings and objective markers.`,
+      `Chapter 3: Returning Home. Expect Myers-house story beats and more direct use of Michael's stalking and repositioning tools.`,
+      `Chapter 4: The Babysitters. Current walkthroughs place the babysitter cast pressure here; track targets methodically rather than sprinting between every noise.`,
+      `Chapter 5: Into The Shadows. Treat the finale as a pressure test of everything learned: objective reading, darkness, Shape Jump, pursuit, and target control.`
+    ],
+    table: {
+      heading: `Story Mode Chapter Guide`,
+      headers: [`Segment`, `Reported Focus`, `Practical Tip`, `What Not To Do`],
+      rows: [
+        [`Prologue`, `Smith's Grove escape and basic systems`, `Follow prompts and learn interaction rules`, `Roam blindly before opening the path`],
+        [`The Road to Haddonfield`, `Transition into town`, `Use stealth and route reading`, `Sprint past cues and miss the intended path`],
+        [`Main Street`, `Town landmarks and public buildings`, `Use recognizable businesses as navigation anchors`, `Chase side details before the chapter objective`],
+        [`Returning Home`, `Myers-house story beats`, `Use stalking and repositioning deliberately`, `Treat it like a straight-line chase`],
+        [`The Babysitters`, `Pressure around key characters`, `Isolate targets and control the route between houses`, `Bounce between targets with no priority`],
+        [`Into The Shadows`, `Final progression and mastery check`, `Apply darkness, jump timing, and objective control`, `Ignore mechanics introduced earlier`]
+      ]
+    },
+    sections: [
+      {
+        heading: `How to Use the Walkthrough`,
+        body: [`For V1, avoid treating story walkthroughs as collectible maps. The reliable high-level path is clearer than every optional pickup position. Start each chapter by identifying the required objective, finish the new mechanic lesson, then sweep for optional content only if the area is safe and the path forward is known.`]
+      },
+      {
+        heading: `Story Progression`,
+        body: [`Official material confirms the campaign is played from Michael's perspective and begins with his escape from Smith's Grove. Recent walkthroughs then describe a move through Haddonfield locations, including town-center and homecoming beats, before focusing on the babysitter arc and final chapter pressure. The exact collectible order should be checked against the current patch, but the progression spine is stable enough for players to follow.`]
+      },
+      {
+        heading: `Chapter Strategy`,
+        body: [`Each chapter should be played as a lesson in Michael's toolkit. Early sections teach movement and objective prompts. Town and home chapters teach navigation through landmarks. Later babysitter chapters teach target selection and pressure. If you are stuck, ask which mechanic the chapter just introduced; the solution usually uses that tool.`]
+      }
+    ],
+    mistakes: [
+      `Searching every optional corner before understanding the required objective.`,
+      `Ignoring chapter prompts because multiplayer habits take over.`,
+      `Using chase pressure before learning how the chapter wants you to stalk or reposition.`,
+      `Assuming third-party collectible positions will stay exact after patches.`
+    ],
+    faq: [
+      { question: `What is the story mode called?`, answer: `Official material calls it Story Mode: The Night He Came Home.` },
+      { question: `Do you play as Michael?`, answer: `Yes. Official story-mode material describes the campaign from Michael Myers' perspective, beginning with Smith's Grove escape.` },
+      { question: `Is this a full collectible guide?`, answer: `No. This is a progression walkthrough for getting through the chapters. Exact collectible positions should be checked against the current game version.` }
+    ],
+    sourceNotes: [
+      `Official Steam and story-mode posts confirm The Night He Came Home, the Michael perspective, and Smith's Grove opening setup.`,
+      `Whisper of the House and Destructoid walkthrough coverage support the chapter names and progression outline summarized here.`
+    ]
+  }
+};
+
+const enhancedGuidePages: GuidePage[] = guidePages.map((guide) => ({
+  ...guide,
+  ...(guideContentUpdates[guide.slug] ?? {}),
+}));
+
+
+export const guideMap = new Map(enhancedGuidePages.map((guide) => [guide.slug, guide]));
 
 export function getGuide(slug: string) {
   return guideMap.get(slug);
@@ -1117,7 +1778,7 @@ export const michaelCluster = [
   'halloween-the-game-characters',
 ].map((slug) => getGuide(slug)!);
 
-export const latestGuides = [...guidePages].sort((a, b) =>
+export const latestGuides = [...enhancedGuidePages].sort((a, b) =>
   a.title.localeCompare(b.title),
 );
 

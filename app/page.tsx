@@ -14,6 +14,7 @@ import { SiteFooter } from '@/components/site/SiteFooter';
 import { SiteHeader } from '@/components/site/SiteHeader';
 import {
   guidePages,
+  getGuide,
   guidePath,
   homeMetadata,
   latestGuides,
@@ -257,7 +258,7 @@ export default function Home() {
               </h2>
             </div>
             <GuideCard
-              guide={guidePages.find((guide) => guide.slug === 'halloween-the-game-walkthrough')!}
+              guide={getGuide('halloween-the-game-walkthrough')!}
             />
           </div>
         </section>

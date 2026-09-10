@@ -33,6 +33,14 @@ yarn-error.log*
 .vercel
 next-env.d.ts
 /dist/
+/build/
 /.wrangler/
 /outputs/
 /work/
+/.cache/
+/.parcel-cache/
+/.turbo/
+/.vite/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache

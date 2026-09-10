@@ -9,8 +9,7 @@ export const siteConfig = {
   lastUpdated: 'September 9, 2026',
   lastUpdatedIso: '2026-09-09',
   analytics: {
-    // Add real IDs only after Google issues them. Leave empty to avoid fake tracking or verification values.
-    googleAnalyticsId: '',
+    googleAnalyticsId: 'G-C2J3X9C7Z5',
     googleSearchConsoleVerification: '',
   },
   nav: [
